@@ -4,5 +4,48 @@ sources:
   - name: gz_raw_data
     tables:
       - name: raw_gz_sales
+        description: sales of Greenweez, with one row per product_id found in each orders_id
+        loaded_at_field: "CAST(date_date AS TIMESTAMP)"
+        freshness: 
+          warn_after:
+            count: 90
+            period: day 
+        tests:
+           - unique:
+              column_name: "(pdt_id || '-' || orders_id)"
+        columns:
+          - name: date_date
+            description: Date of purchase
+          - name: orders_id
+            description: Foreign key to ship table
+          - name: product_id
+            description: Foreign key to product table
+          - name: revenue
+            description: The amount paid by the customer to purchase a product. Revenue = selling_price * quantity
+
+
       - name: raw_gz_ship
+        description: Shipping information
+        columns:
+          - name: orders_id
+            description: Primary key for ship table, foreign key to sales
+            tests:
+              - unique
+              - not_null       
+          - name: shipping_fee
+            description: Shipping fee 
+          - name: logCost
+            description: Cost of log
+          - name: ship_cost
+            description: Shipping cost by orders
+
       - name: raw_gz_product
+        description: Products of Greenweez
+        columns:
+          - name: products_id
+            description: Primary key and foreign key for sales table
+            tests:
+              - unique
+              - not_null              
+          - name: purchase_price
+            description: Purchase price of each product
