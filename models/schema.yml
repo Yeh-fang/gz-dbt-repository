@@ -23,8 +23,6 @@ sources:
             description: Foreign key to product table
           - name: revenue
             description: The amount paid by the customer to purchase a product. Revenue = selling_price * quantity
-
-
       - name: raw_gz_ship
         description: Shipping information
         columns:
@@ -39,7 +37,6 @@ sources:
             description: Cost of log
           - name: ship_cost
             description: Shipping cost by orders
-
       - name: raw_gz_product
         description: Products of Greenweez
         columns:
@@ -52,16 +49,60 @@ sources:
             description: Purchase price of each product
       - name: adwords
         identifier: raw_gz_adwords
-        description: google ads 
+        description: google ads
+        tests:
+           - unique:
+              column_name: "(date_date || '-' || campaign_key)"        
+        columns:
+          - name: date_date
+          - name: paid_source
+          - name: campaign_key
+          - name: campaign_name
+          - name: ads_cost
+          - name: impression
+          - name: click
       - name: bing
         identifier: raw_gz_bing
         description: ads of bing
+        tests:
+           - unique:
+              column_name: "(date_date || '-' || campaign_key)"   
+        columns:
+          - name: date_date
+          - name: paid_source
+          - name: campaign_key
+          - name: campaign_name
+          - name: ads_cost
+          - name: impression
+          - name: click
       - name: criteo
         identifier: raw_gz_criteo
-        description: ads of criteo      
+        description: ads of criteo
+        tests:
+           - unique:
+              column_name: "(date_date || '-' || campaign_key)"   
+        columns:
+          - name: date_date
+          - name: paid_source
+          - name: campaign_key
+          - name: campaign_name
+          - name: ads_cost
+          - name: impression
+          - name: click         
       - name: facebook
         identifier: raw_gz_facebook
         description: ads of facebook
+        tests:
+           - unique:
+              column_name: "(date_date || '-' || campaign_key)"   
+        columns:
+          - name: date_date
+          - name: paid_source
+          - name: campaign_key
+          - name: campaign_name
+          - name: ads_cost
+          - name: impression
+          - name: click        
        
        
        
