@@ -2,7 +2,7 @@ with
 
 source as (
 
-    select * from {{ source('gz_raw_data', 'adwords') }}
+    select * from {{ source('gz_raw_data', 'criteo') }}
 
 ),
 
