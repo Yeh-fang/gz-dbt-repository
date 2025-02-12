@@ -11,8 +11,14 @@ LEFT JOIN {{ ref('stg_gz_raw_data__raw_gz_product') }} AS product
 ON sales.pdt_id = product.products_id
 )
 
+, temp_margin AS (
 SELECT 
     *
     ,ROUND(quantity*purchase_price,2) AS purchase_cost
     ,ROUND((revenue - (quantity*purchase_price)),2) AS margin
 FROM temp_join_order_product
+)
+
+SELECT *
+    {{margin_percent('revenue','purchase_cost',2)}}
+FROM temp_margin
