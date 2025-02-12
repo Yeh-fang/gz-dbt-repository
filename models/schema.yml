@@ -50,7 +50,7 @@ sources:
               - not_null              
           - name: purchase_price
             description: Purchase price of each product
-      - name: raw_gz_adwords
+      - name: adwords
         identifier: raw_gz_adwords
         description: google ads 
 
