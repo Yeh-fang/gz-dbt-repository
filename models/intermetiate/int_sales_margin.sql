@@ -20,5 +20,5 @@ FROM temp_join_order_product
 )
 
 SELECT *
-    {{margin_percent('revenue','purchase_cost',2)}}
+    ,{{margin_percent('revenue','purchase_cost',2)}}
 FROM temp_margin
