@@ -2,6 +2,7 @@ version: 2
 
 sources:
   - name: gz_raw_data
+    schema: gz_raw_data
     tables:
       - name: raw_gz_sales
         description: sales of Greenweez, with one row per product_id found in each orders_id
@@ -49,3 +50,11 @@ sources:
               - not_null              
           - name: purchase_price
             description: Purchase price of each product
+      - name: raw_gz_adwords
+        identifier: raw_gz_adwords
+        description: google ads 
+
+
+       
+       
+       
