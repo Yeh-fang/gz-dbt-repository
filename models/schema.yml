@@ -1,7 +1,7 @@
 version: 2
 
 sources:
-  - name: gz_raw_data
+  - name: raw
     schema: gz_raw_data
     tables:
       - name: raw_gz_sales
